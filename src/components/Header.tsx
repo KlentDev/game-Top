@@ -257,11 +257,11 @@ export function Header() {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                className="absolute top-full mt-3 right-0 w-[850px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-[60] overflow-hidden"
+                        className="absolute top-full mt-3 right-0 w-[900px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-[60] overflow-hidden"
                       >
-                        <div className="px-10 py-7 bg-gradient-to-r from-purple-600 to-blue-600">
-                          <h3 className="font-bold text-white text-lg">Notifications</h3>
-                          <p className="text-purple-100 text-xs mt-2">You have {notifications.filter(n => !n.read).length} unread notification{notifications.filter(n => !n.read).length !== 1 ? 's' : ''}</p>
+                        <div className="px-12 py-8 bg-gradient-to-r from-purple-600 to-blue-600">
+                          <h3 className="font-bold text-white text-xl">Notifications</h3>
+                          <p className="text-purple-100 text-sm mt-2">You have {notifications.filter(n => !n.read).length} unread notification{notifications.filter(n => !n.read).length !== 1 ? 's' : ''}</p>
                         </div>
                         <div className="max-h-96 overflow-y-auto">
                           {notifications.length > 0 ? (
@@ -271,32 +271,32 @@ export function Header() {
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: index * 0.05 }}
-                                className={`px-10 py-6 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer ${
+                                className={`px-12 py-7 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer ${
                                   !notif.read ? 'bg-purple-50/50 dark:bg-purple-900/15' : ''
                                 }`}
                               >
-                                <div className="flex items-start gap-3">
-                                  <div className={`flex-shrink-0 w-2.5 h-2.5 rounded-full mt-1.5 ${
+                                <div className="flex items-start gap-4">
+                                  <div className={`flex-shrink-0 w-3 h-3 rounded-full mt-2 ${
                                     !notif.read ? 'bg-gradient-to-r from-purple-600 to-blue-600' : 'bg-gray-300 dark:bg-gray-600'
                                   }`} />
                                   <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-gray-900 dark:text-white leading-snug">{notif.message}</p>
-                                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2.5">🕐 {notif.time}</p>
+                                    <p className="text-sm font-semibold text-gray-900 dark:text-white leading-snug">{notif.message}</p>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">🕐 {notif.time}</p>
                                   </div>
                                 </div>
                               </motion.div>
                             ))
                           ) : (
-                            <div className="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+                            <div className="px-12 py-16 text-center text-gray-500 dark:text-gray-400">
                               <p className="text-sm font-medium">No notifications yet</p>
                             </div>
                           )}
                         </div>
-                        <div className="px-10 py-6 bg-gray-50 dark:bg-gray-900/50 border-t border-gray-100 dark:border-gray-700">
+                        <div className="px-12 py-7 bg-gray-50 dark:bg-gray-900/50 border-t border-gray-100 dark:border-gray-700">
                           <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="w-full py-2.5 text-sm text-purple-600 dark:text-purple-400 font-bold hover:bg-purple-50 dark:hover:bg-purple-900/30 rounded-lg transition-colors"
+                            className="w-full py-3 text-sm text-purple-600 dark:text-purple-400 font-bold hover:bg-purple-50 dark:hover:bg-purple-900/30 rounded-lg transition-colors"
                           >
                             Mark all as read
                           </motion.button>
@@ -329,45 +329,45 @@ export function Header() {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute top-full mt-3 right-0 w-[500px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-[60] overflow-hidden"
+                        className="absolute top-full mt-3 right-0 w-[520px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-[60] overflow-hidden"
                       >
                         {/* Credits Section */}
-                        <div className="px-8 py-6 bg-gradient-to-br from-purple-600 via-purple-500 to-blue-600 text-white">
+                        <div className="px-10 py-8 bg-gradient-to-br from-purple-600 via-purple-500 to-blue-600 text-white">
                           <p className="text-xs font-bold text-purple-100 uppercase tracking-widest">Your Credits</p>
-                          <p className="text-4xl font-bold mt-3">{credits.toLocaleString()}</p>
-                          <p className="text-xs text-purple-100 mt-2 font-medium">✨ Earn more with every top-up</p>
+                          <p className="text-5xl font-bold mt-4">{credits.toLocaleString()}</p>
+                          <p className="text-xs text-purple-100 mt-3 font-medium">✨ Earn more with every top-up</p>
                         </div>
                         
-                        <div className="py-4">
+                        <div className="py-5">
                           <motion.button
-                            whileHover={{ backgroundColor: 'rgba(249, 250, 251, 1)' }}
+                            whileHover={{ backgroundColor: theme === 'light' ? 'rgba(249, 250, 251, 1)' : 'rgba(55, 65, 81, 1)' }}
                             onClick={() => { navigate('/user'); setUserMenuOpen(false); }}
-                            className="w-full px-8 py-4 text-left text-gray-900 dark:text-white flex items-center gap-3 transition-colors"
+                            className="w-full px-10 py-4 text-left flex items-center gap-4 transition-colors"
                           >
                             <User className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
                             <span className="text-sm font-semibold text-gray-900 dark:text-white">My Profile</span>
                           </motion.button>
                           <motion.button
-                            whileHover={{ backgroundColor: 'rgba(249, 250, 251, 1)' }}
+                            whileHover={{ backgroundColor: theme === 'light' ? 'rgba(249, 250, 251, 1)' : 'rgba(55, 65, 81, 1)' }}
                             onClick={() => { setShowVouchers(!showVouchers); setUserMenuOpen(false); }}
-                            className="w-full px-8 py-4 text-left text-gray-900 dark:text-white flex items-center gap-3 transition-colors"
+                            className="w-full px-10 py-4 text-left flex items-center gap-4 transition-colors"
                           >
                             <Gift className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0" />
                             <span className="text-sm font-semibold text-gray-900 dark:text-white">My Vouchers</span>
                           </motion.button>
                           <motion.button
-                            whileHover={{ backgroundColor: 'rgba(249, 250, 251, 1)' }}
+                            whileHover={{ backgroundColor: theme === 'light' ? 'rgba(249, 250, 251, 1)' : 'rgba(55, 65, 81, 1)' }}
                             onClick={() => { setUserMenuOpen(false); }}
-                            className="w-full px-8 py-4 text-left text-gray-900 dark:text-white flex items-center gap-3 transition-colors"
+                            className="w-full px-10 py-4 text-left flex items-center gap-4 transition-colors"
                           >
                             <Settings className="w-5 h-5 text-gray-600 dark:text-gray-400 flex-shrink-0" />
                             <span className="text-sm font-semibold text-gray-900 dark:text-white">Settings</span>
                           </motion.button>
-                          <div className="border-t border-gray-200 dark:border-gray-700 my-3" />
+                          <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
                           <motion.button
-                            whileHover={{ backgroundColor: 'rgba(254, 242, 242, 1)' }}
+                            whileHover={{ backgroundColor: theme === 'light' ? 'rgba(254, 242, 242, 1)' : 'rgba(127, 29, 29, 1)' }}
                             onClick={() => { setShowLogoutConfirm(true); setUserMenuOpen(false); }}
-                            className="w-full px-8 py-4 text-left text-red-600 dark:text-red-400 flex items-center gap-3 transition-colors"
+                            className="w-full px-10 py-4 text-left flex items-center gap-4 transition-colors"
                           >
                             <LogOut className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0" />
                             <span className="text-sm font-semibold text-red-600 dark:text-red-400">Logout</span>
