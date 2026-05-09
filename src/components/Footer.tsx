@@ -1,117 +1,129 @@
-import { Facebook, Twitter, Instagram, Mail } from 'lucide-react';
+import { Facebook, Instagram, Mail, Send, Twitter, Youtube } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguageCurrency } from '../context/LanguageContext';
 import { translate } from '../utils/translations';
+
+const paymentMethods = [
+  { label: 'Visa', bg: '#1a1f71', text: '#fff', abbr: 'VISA' },
+  { label: 'Mastercard', bg: '#eb001b', text: '#fff', abbr: 'MC' },
+  { label: 'GCash', bg: '#007dff', text: '#fff', abbr: 'GCash' },
+  { label: 'PayMaya', bg: '#00a859', text: '#fff', abbr: 'PayMaya' },
+  { label: 'PayPal', bg: '#003087', text: '#fff', abbr: 'PayPal' },
+  { label: 'Alipay', bg: '#1677ff', text: '#fff', abbr: 'Alipay' },
+];
 
 export function Footer() {
   const navigate = useNavigate();
   const { language } = useLanguageCurrency();
 
   return (
-    <footer className="bg-gray-900 dark:bg-black text-white py-12 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="p-2 rounded-lg">
-                <img src="/bg/up-arrow.png" alt="GameTopUp Logo" className="w-5 h-5" />
-              </div>
-              <span className="text-lg">GameTopUp</span>
-            </div>
-            <p className="text-gray-400 text-sm">
-              {translate('instantDelivery', language)}
+    <footer className="ft-root">
+      <div className="ft-shell">
+
+        {/* ── Top grid ─────────────────────────────────────── */}
+        <div className="ft-grid">
+
+          {/* Brand col */}
+          <div className="ft-brand-col">
+            <button className="ft-brand" onClick={() => navigate('/')}>
+              <img src="/bg/up-arrow.png" alt="GameTopUp" className="ft-brand-logo" />
+              <span className="ft-brand-name">GameTopUp</span>
+            </button>
+            <p className="ft-brand-tagline">
+              The fastest, safest way to top up your favourite games — instant delivery, every time.
             </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-sm mb-4 font-heading">{translate('browseGames', language)}</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li>
-                <button
-                  onClick={() => navigate('/')}
-                  className="hover:text-white transition-colors text-left"
-                >
-                  {translate('home', language)}
-                </button>
-              </li>
-              <li>
-                <a href="/#games" className="hover:text-white transition-colors">
-                  {translate('allGames', language)}
+            <div className="ft-socials">
+              {[
+                { Icon: Facebook, href: '#', label: 'Facebook' },
+                { Icon: Twitter, href: '#', label: 'Twitter' },
+                { Icon: Instagram, href: '#', label: 'Instagram' },
+                { Icon: Youtube, href: '#', label: 'YouTube' },
+                { Icon: Send, href: '#', label: 'Telegram' },
+                { Icon: Mail, href: '#', label: 'Email' },
+              ].map(({ Icon, href, label }) => (
+                <a key={label} href={href} className="ft-social" aria-label={label}>
+                  <Icon className="ft-social-icon" />
                 </a>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigate('/help')}
-                  className="hover:text-white transition-colors text-left"
-                >
-                  {translate('help', language)}
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Account */}
-          <div>
-            <h4 className="text-sm mb-4 font-heading">{translate('signIn', language)}</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li>
-                <button
-                  onClick={() => navigate('/signin')}
-                  className="hover:text-white transition-colors text-left"
-                >
-                  {translate('signIn', language)}
-                </button>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h4 className="text-sm mb-4">Follow Us</h4>
-            <div className="flex gap-3">
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 dark:bg-gray-900 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-colors"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 dark:bg-gray-900 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-colors"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 dark:bg-gray-900 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-colors"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 dark:bg-gray-900 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-colors"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
+              ))}
             </div>
           </div>
+
+          {/* Games col */}
+          <div className="ft-col">
+            <h4 className="ft-col-head">Games</h4>
+            <ul className="ft-links">
+              {['Mobile Legends', 'PUBG Mobile', 'Free Fire', 'Genshin Impact', 'Call of Duty'].map((g) => (
+                <li key={g}>
+                  <button
+                    className="ft-link"
+                    onClick={() => navigate(`/game/${g.toLowerCase().replace(/\s+/g, '-')}`)}
+                  >
+                    {g}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company col */}
+          <div className="ft-col">
+            <h4 className="ft-col-head">Company</h4>
+            <ul className="ft-links">
+              <li><button className="ft-link" onClick={() => navigate('/')}>Home</button></li>
+              <li><button className="ft-link" onClick={() => navigate('/help')}>Help Center</button></li>
+              <li><a className="ft-link" href="#">About Us</a></li>
+              <li><a className="ft-link" href="#">Blog</a></li>
+              <li><a className="ft-link" href="#">Careers</a></li>
+            </ul>
+          </div>
+
+          {/* Account col */}
+          <div className="ft-col">
+            <h4 className="ft-col-head">Account</h4>
+            <ul className="ft-links">
+              <li><button className="ft-link" onClick={() => navigate('/signin')}>{translate('signIn', language)}</button></li>
+              <li><button className="ft-link" onClick={() => navigate('/signup')}>Sign Up</button></li>
+              <li><button className="ft-link" onClick={() => navigate('/user')}>My Dashboard</button></li>
+              <li><a className="ft-link" href="#">Transaction History</a></li>
+            </ul>
+          </div>
+
+          {/* Legal col */}
+          <div className="ft-col">
+            <h4 className="ft-col-head">Legal</h4>
+            <ul className="ft-links">
+              <li><a className="ft-link" href="#">Terms of Service</a></li>
+              <li><a className="ft-link" href="#">Privacy Policy</a></li>
+              <li><a className="ft-link" href="#">Cookie Policy</a></li>
+              <li><a className="ft-link" href="#">Refund Policy</a></li>
+            </ul>
+          </div>
         </div>
 
-        <div className="border-t border-gray-800 dark:border-gray-900 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; 2025 GameTopUp. All rights reserved.</p>
+        {/* ── Payment methods ───────────────────────────────── */}
+        <div className="ft-payment-row">
+          <p className="ft-payment-label">Accepted Payments</p>
+          <div className="ft-payment-methods">
+            {paymentMethods.map((m) => (
+              <div key={m.label} className="ft-payment-badge" style={{ background: m.bg }}>
+                <span style={{ color: m.text, fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.03em', lineHeight: 1 }}>
+                  {m.abbr}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* ── Bottom bar ────────────────────────────────────── */}
+        <div className="ft-bottom">
+          <p className="ft-copy">© {new Date().getFullYear()} GameTopUp. All rights reserved.</p>
+          <p className="ft-copy">
+            Game art & trademarks belong to their respective owners.{' '}
+            <a className="ft-copy-link" href="#">RAWG.io</a> data used under their{' '}
+            <a className="ft-copy-link" href="https://rawg.io/apidocs" target="_blank" rel="noreferrer">Terms of Use</a>.
+          </p>
+        </div>
+
       </div>
     </footer>
   );

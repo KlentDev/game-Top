@@ -7,6 +7,7 @@ interface AuthContextType {
   login: (name: string) => void;
   logout: () => void;
   addCredits: (amount: number) => void;
+  updateProfile: (name: string) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -48,8 +49,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  const updateProfile = (name: string) => {
+    setUserName(name);
+    localStorage.setItem('userName', name);
+  };
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, userName, credits, login, logout, addCredits }}>
+    <AuthContext.Provider value={{ isAuthenticated, userName, credits, login, logout, addCredits, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );
